@@ -91,7 +91,7 @@ class CalculatorEngine: ObservableObject {
         expression += currentInput
         
         if let lastChar = expression.last, operators.contains(lastChar) || lastChar == "." {
-//            expression.removeLast()
+            expression.removeLast()
         }
 
         let mathExpression = expression
