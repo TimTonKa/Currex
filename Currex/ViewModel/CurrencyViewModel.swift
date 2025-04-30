@@ -68,6 +68,7 @@ class CurrencyViewModel: ObservableObject {
 
     // MARK: - Public Methods
     func handle(action: CalculatorButtonAction) {
+        
         switch action {
         case .equal:
             engine.input(.equal)

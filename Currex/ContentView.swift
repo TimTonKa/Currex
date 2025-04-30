@@ -36,10 +36,13 @@ struct ContentView: View {
                         }
                     }
                     
-                    Image(systemName: "arrow.right")
-                        .font(.title2)
-                        .foregroundColor(.blue)
-                        .padding(.horizontal, 8)
+                    VStack {
+                        Spacer()
+                        Image(systemName: "arrow.right")
+                            .font(.title2)
+                            .foregroundColor(.blue)
+                            .padding(.horizontal, 8)
+                    }
                     
                     VStack(alignment: .leading) {
                         Text("目標幣別")

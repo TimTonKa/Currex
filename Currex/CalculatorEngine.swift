@@ -15,7 +15,7 @@ class CalculatorEngine: ObservableObject {
     private var currentInput: String = ""    // 當前輸入的數字
     private var lastOperator: String?        // 最後輸入的運算子
 
-    private let operators = ["+", "-", "×", "÷"]
+    private let operators: [Character] = ["+", "-", "×", "÷"]
 
     func input(_ action: CalculatorButtonAction) {
         switch action {
@@ -89,6 +89,10 @@ class CalculatorEngine: ObservableObject {
 
     private func evaluate() {
         expression += currentInput
+        
+        if let lastChar = expression.last, operators.contains(lastChar) || lastChar == "." {
+//            expression.removeLast()
+        }
 
         let mathExpression = expression
             .replacingOccurrences(of: "×", with: "*")
