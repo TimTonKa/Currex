@@ -16,7 +16,7 @@ class CurrencyViewModel: ObservableObject {
     @Published var sourceCurrencyCode: String {
         didSet {
             UserDefaultsManager.shared.setSourceCurrencyCode(sourceCurrencyCode)
-            Task { await fetchExchangeRates() }
+            convert()
         }
     }
     
@@ -55,7 +55,8 @@ class CurrencyViewModel: ObservableObject {
         engine.$result
             .dropFirst()
             .sink { [weak self] _ in
-                self?.convert()
+//                self?.convert()
+                self?.objectWillChange.send()
             }
             .store(in: &cancellables)
 
@@ -67,11 +68,11 @@ class CurrencyViewModel: ObservableObject {
     }
 
     // MARK: - Public Methods
-    func handle(action: CalculatorButtonAction) {        
+    func handle(action: CalculatorButtonAction) {
         switch action {
         case .equal:
             engine.input(.equal)
-            convertAfterEvaluation()
+            convert()
         case .clear:
             engine.input(.clear)
             convertedAmount = nil
@@ -82,13 +83,15 @@ class CurrencyViewModel: ObservableObject {
 
     func convert() {
         guard let amount = Double(engine.result),
-              let rate = exchangeRates[targetCurrencyCode.lowercased()] else {
+              let sourceRate = exchangeRates[sourceCurrencyCode.lowercased()],
+              let targetRate = exchangeRates[targetCurrencyCode.lowercased()] else {
             convertedAmount = nil
             return
         }
 
-        convertedAmount = amount * rate
-        logger.debug("Convert \(self.engine.result) \(self.sourceCurrencyCode.uppercased()) to \(self.targetCurrencyCode.uppercased()) with rate \(rate)")
+        let result = amount / sourceRate * targetRate
+        convertedAmount = result
+        logger.debug("Convert \(amount) \(self.sourceCurrencyCode.uppercased()) to \(self.targetCurrencyCode.uppercased()) → \(result)")
     }
 
     @MainActor
@@ -97,7 +100,7 @@ class CurrencyViewModel: ObservableObject {
         defer { isLoading = false }
 
         do {
-            let rates = try await CurrencyAPIManager.shared.fetchExchangeRates(endpoint: sourceCurrencyCode)
+            let rates = try await CurrencyAPIManager.shared.fetchExchangeRates(endpoint: "usd")
             self.exchangeRates = rates
             convert() // 自動換算
         } catch {
@@ -106,18 +109,6 @@ class CurrencyViewModel: ObservableObject {
     }
 
     // MARK: - Private Helpers
-    private func convertAfterEvaluation() {
-        guard let sourceRate = exchangeRates[sourceCurrencyCode.lowercased()],
-              let targetRate = exchangeRates[targetCurrencyCode.lowercased()],
-              let amount = Double(engine.result) else {
-            convertedAmount = nil
-            return
-        }
-
-        let result = amount / sourceRate * targetRate
-        convertedAmount = result
-    }
-
     private func loadCountries() {
         guard let url = Bundle.main.url(forResource: "Country", withExtension: "json"),
               let data = try? Data(contentsOf: url),
