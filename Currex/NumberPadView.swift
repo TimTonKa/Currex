@@ -14,15 +14,15 @@ enum CalculatorButtonAction: Hashable {
     case operation(String) // + - × ÷
     case equal
     case clear
-    case plusMinus
-    case percent
+    case backspace
+    case swapCurrency
 }
 
 struct NumberPadView: View {
     let onTap: (CalculatorButtonAction) -> Void
 
     let buttons: [[CalculatorButtonAction]] = [
-        [.clear, .plusMinus, .percent, .operation("÷")],
+        [.clear, .swapCurrency, .backspace, .operation("÷")],
         [.input("7"), .input("8"), .input("9"), .operation("×")],
         [.input("4"), .input("5"), .input("6"), .operation("-")],
         [.input("1"), .input("2"), .input("3"), .operation("+")],
@@ -57,8 +57,8 @@ struct NumberPadView: View {
         case .operation(let op): return op
         case .equal: return "="
         case .clear: return "AC"
-        case .plusMinus: return "+/-"
-        case .percent: return "%"
+        case .backspace: return "⌫"
+        case .swapCurrency: return "⇄"
         }
     }
 
@@ -68,7 +68,7 @@ struct NumberPadView: View {
             return Color(.darkGray)
         case .operation, .equal:
             return Color.orange
-        case .clear, .plusMinus, .percent:
+        case .clear, .backspace, .swapCurrency:
             return Color(.lightGray)
         }
     }

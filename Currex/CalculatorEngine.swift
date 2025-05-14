@@ -31,10 +31,11 @@ class CalculatorEngine: ObservableObject {
             }
         case .operation(let op):
             handleOperator(op)
-        case .plusMinus:
-            togglePlusMinus()
-        case .percent:
-            applyPercent()
+        case .backspace:
+            backspace()
+        case .swapCurrency:
+            // 不處理，由 ViewModel 處理
+            break
         }
     }
 
@@ -64,20 +65,10 @@ class CalculatorEngine: ObservableObject {
         result = currentInput
     }
 
-    private func togglePlusMinus() {
+    private func backspace() {
         guard !currentInput.isEmpty else { return }
-        if currentInput.hasPrefix("-") {
-            currentInput.removeFirst()
-        } else {
-            currentInput = "-" + currentInput
-        }
-        result = currentInput
-    }
-
-    private func applyPercent() {
-        guard let value = Double(currentInput) else { return }
-        currentInput = String(value / 100)
-        result = currentInput
+        currentInput.removeLast()
+        result = currentInput.isEmpty ? "0" : currentInput
     }
 
     private func handleOperator(_ op: String) {

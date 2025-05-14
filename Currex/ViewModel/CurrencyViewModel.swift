@@ -76,6 +76,10 @@ class CurrencyViewModel: ObservableObject {
         case .clear:
             engine.input(.clear)
             convertedAmount = nil
+        case .backspace:
+            engine.input(.backspace)
+        case .swapCurrency:
+            swapCurrencies()
         default:
             engine.input(action)
         }
@@ -92,6 +96,13 @@ class CurrencyViewModel: ObservableObject {
         let result = amount / sourceRate * targetRate
         convertedAmount = result
         logger.debug("Convert \(amount) \(self.sourceCurrencyCode.uppercased()) to \(self.targetCurrencyCode.uppercased()) → \(result)")
+    }
+    
+    func swapCurrencies() {
+        let temp = sourceCurrencyCode
+        sourceCurrencyCode = targetCurrencyCode
+        targetCurrencyCode = temp
+        convert() // 交換後立即換算
     }
 
     @MainActor
