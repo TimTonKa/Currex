@@ -54,15 +54,7 @@
 		"currency_name": "east caribbean dollar",
 		"currency_code": "xcd",
 		"currency_number": "951"
-	},
-	"aq": {
-		"country_name": "antarctica",
-		"country_iso3": "ata",
-		"country_iso_numeric": "10",
-		"currency_name": "no universal currency",
-		"currency_code": "",
-		"currency_number": ""
-	},
+	},	
 	"ag": {
 		"country_name": "antigua and barbuda",
 		"country_iso3": "atg",
@@ -120,7 +112,7 @@
 		"currency_number": "944"
 	},
 	"bs": {
-		"country_name": "bahamas (the)",
+		"country_name": "bahamas",
 		"country_iso3": "bhs",
 		"country_iso_numeric": "44",
 		"currency_name": "bahamian dollar",
@@ -200,14 +192,14 @@
 		"currency_number": "64"
 	},
 	"bo": {
-		"country_name": "bolivia (plurinational state of)",
+		"country_name": "bolivia",
 		"country_iso3": "bol",
 		"country_iso_numeric": "68",
 		"currency_name": "boliviano",
 		"currency_code": "bob",
 		"currency_number": "68"
 	},
-	" sint eustatius and saba": {
+    "bq": {
 		"country_name": "bonaire",
 		"country_iso3": "bq",
 		"country_iso_numeric": "bes",
@@ -248,7 +240,7 @@
 		"currency_number": "986"
 	},
 	"io": {
-		"country_name": "british indian ocean territory (the)",
+		"country_name": "british indian ocean territory",
 		"country_iso3": "iot",
 		"country_iso_numeric": "86",
 		"currency_name": "us dollar",
@@ -320,7 +312,7 @@
 		"currency_number": "124"
 	},
 	"ky": {
-		"country_name": "cayman islands (the)",
+		"country_name": "cayman islands",
 		"country_iso3": "cym",
 		"country_iso_numeric": "136",
 		"currency_name": "cayman islands dollar",
@@ -328,7 +320,7 @@
 		"currency_number": "136"
 	},
 	"cf": {
-		"country_name": "central african republic (the)",
+		"country_name": "central african republic",
 		"country_iso3": "caf",
 		"country_iso_numeric": "140",
 		"currency_name": "cfa franc beac",
@@ -368,7 +360,7 @@
 		"currency_number": "36"
 	},
 	"cc": {
-		"country_name": "cocos (keeling) islands (the)",
+		"country_name": "cocos (keeling) islands",
 		"country_iso3": "cck",
 		"country_iso_numeric": "166",
 		"currency_name": "australian dollar",
@@ -384,7 +376,7 @@
 		"currency_number": "170"
 	},
 	"km": {
-		"country_name": "comoros (the)",
+		"country_name": "comoros",
 		"country_iso3": "com",
 		"country_iso_numeric": "174",
 		"currency_name": "comoro franc",
@@ -400,7 +392,7 @@
 		"currency_number": "976"
 	},
 	"cg": {
-		"country_name": "congo (the)",
+		"country_name": "congo (rep)",
 		"country_iso3": "cog",
 		"country_iso_numeric": "178",
 		"currency_name": "cfa franc beac",
@@ -408,7 +400,7 @@
 		"currency_number": "950"
 	},
 	"ck": {
-		"country_name": "cook islands (the)",
+		"country_name": "cook islands",
 		"country_iso3": "cok",
 		"country_iso_numeric": "184",
 		"currency_name": "new zealand dollar",
@@ -440,7 +432,7 @@
 		"currency_number": "192"
 	},
 	"cw": {
-		"country_name": "cura�ao",
+		"country_name": "curaçao",
 		"country_iso3": "cuw",
 		"country_iso_numeric": "531",
 		"currency_name": "netherlands antillean guilder",
@@ -456,7 +448,7 @@
 		"currency_number": "978"
 	},
 	"ci": {
-		"country_name": "c�te d'ivoire",
+		"country_name": "Côte d'ivoire",
 		"country_iso3": "civ",
 		"country_iso_numeric": "384",
 		"currency_name": "cfa franc bceao",
@@ -488,7 +480,7 @@
 		"currency_number": "951"
 	},
 	"do": {
-		"country_name": "dominican republic (the)",
+		"country_name": "dominican republic",
 		"country_iso3": "dom",
 		"country_iso_numeric": "214",
 		"currency_name": "dominican peso",
@@ -552,7 +544,7 @@
 		"currency_number": "230"
 	},
 	"fk": {
-		"country_name": "falkland islands (the) [malvinas]",
+		"country_name": "falkland islands [malvinas]",
 		"country_iso3": "flk",
 		"country_iso_numeric": "238",
 		"currency_name": "falkland islands pound",
@@ -560,7 +552,7 @@
 		"currency_number": "238"
 	},
 	"fo": {
-		"country_name": "faroe islands (the)",
+		"country_name": "faroe islands",
 		"country_iso3": "fro",
 		"country_iso_numeric": "234",
 		"currency_name": "danish krone",
@@ -608,7 +600,7 @@
 		"currency_number": "953"
 	},
 	"tf": {
-		"country_name": "french southern territories (the)",
+		"country_name": "french southern territories",
 		"country_iso3": "atf",
 		"country_iso_numeric": "260",
 		"currency_name": "euro",
@@ -624,7 +616,7 @@
 		"currency_number": "950"
 	},
 	"gm": {
-		"country_name": "gambia (the)",
+		"country_name": "gambia",
 		"country_iso3": "gmb",
 		"country_iso_numeric": "270",
 		"currency_name": "dalasi",
@@ -760,7 +752,7 @@
 		"currency_number": "36"
 	},
 	"va": {
-		"country_name": "holy see (the)",
+		"country_name": "holy see",
 		"country_iso3": "vat",
 		"country_iso_numeric": "336",
 		"currency_name": "euro",
@@ -816,7 +808,7 @@
 		"currency_number": "360"
 	},
 	"ir": {
-		"country_name": "iran (islamic republic of)",
+		"country_name": "iran",
 		"country_iso3": "irn",
 		"country_iso_numeric": "364",
 		"currency_name": "iranian rial",
@@ -920,7 +912,7 @@
 		"currency_number": "36"
 	},
 	"kr": {
-		"country_name": "korea (the republic of)",
+		"country_name": "korea",
 		"country_iso3": "kor",
 		"country_iso_numeric": "410",
 		"currency_name": "won",
@@ -1064,7 +1056,7 @@
 		"currency_number": "978"
 	},
 	"mh": {
-		"country_name": "marshall islands (the)",
+		"country_name": "marshall islands",
 		"country_iso3": "mhl",
 		"country_iso_numeric": "584",
 		"currency_name": "us dollar",
@@ -1120,7 +1112,7 @@
 		"currency_number": "840"
 	},
 	"md": {
-		"country_name": "moldova (the republic of)",
+		"country_name": "moldova",
 		"country_iso3": "mda",
 		"country_iso_numeric": "498",
 		"currency_name": "moldovan leu",
@@ -1208,7 +1200,7 @@
 		"currency_number": "524"
 	},
 	"nl": {
-		"country_name": "netherlands (the)",
+		"country_name": "netherlands",
 		"country_iso3": "nld",
 		"country_iso_numeric": "528",
 		"currency_name": "euro",
@@ -1240,7 +1232,7 @@
 		"currency_number": "558"
 	},
 	"ne": {
-		"country_name": "niger (the)",
+		"country_name": "niger",
 		"country_iso3": "ner",
 		"country_iso_numeric": "562",
 		"currency_name": "cfa franc bceao",
@@ -1272,7 +1264,7 @@
 		"currency_number": "36"
 	},
 	"mp": {
-		"country_name": "northern mariana islands (the)",
+		"country_name": "northern mariana islands",
 		"country_iso3": "mnp",
 		"country_iso_numeric": "580",
 		"currency_name": "us dollar",
@@ -1352,7 +1344,7 @@
 		"currency_number": "604"
 	},
 	"ph": {
-		"country_name": "philippines (the)",
+		"country_name": "philippines",
 		"country_iso3": "phl",
 		"country_iso_numeric": "608",
 		"currency_name": "philippine peso",
@@ -1416,7 +1408,7 @@
 		"currency_number": "946"
 	},
 	"ru": {
-		"country_name": "russian federation (the)",
+		"country_name": "russian federation",
 		"country_iso3": "rus",
 		"country_iso_numeric": "643",
 		"currency_name": "russian ruble",
@@ -1432,7 +1424,7 @@
 		"currency_number": "646"
 	},
 	"re": {
-		"country_name": "r�union",
+		"country_name": "Réunion",
 		"country_iso3": "reu",
 		"country_iso_numeric": "638",
 		"currency_name": "euro",
@@ -1440,7 +1432,7 @@
 		"currency_number": "978"
 	},
 	"bl": {
-		"country_name": "saint barth�lemy",
+		"country_name": "Saint Barthélemy",
 		"country_iso3": "blm",
 		"country_iso_numeric": "652",
 		"currency_name": "euro",
@@ -1496,7 +1488,7 @@
 		"currency_number": "951"
 	},
 	"ws": {
-		"country_name": "samoa",
+		"country_name": "western samoa",
 		"country_iso3": "wsm",
 		"country_iso_numeric": "882",
 		"currency_name": "tala",
@@ -1620,7 +1612,7 @@
 		"country_iso3": "sgs",
 		"country_iso_numeric": "239",
 		"currency_name": "no universal currency",
-		"currency_code": "",
+		"currency_code": "gbp",
 		"currency_number": ""
 	},
 	"ss": {
@@ -1648,7 +1640,7 @@
 		"currency_number": "144"
 	},
 	"sd": {
-		"country_name": "sudan (the)",
+		"country_name": "sudan",
 		"country_iso3": "sdn",
 		"country_iso_numeric": "729",
 		"currency_name": "sudanese pound",
@@ -1696,7 +1688,7 @@
 		"currency_number": "760"
 	},
 	"tw": {
-		"country_name": "taiwan (province of china)",
+		"country_name": "taiwan",
 		"country_iso3": "twn",
 		"country_iso_numeric": "158",
 		"currency_name": "new taiwan dollar",
@@ -1792,7 +1784,7 @@
 		"currency_number": "934"
 	},
 	"tc": {
-		"country_name": "turks and caicos islands (the)",
+		"country_name": "turks and caicos islands",
 		"country_iso3": "tca",
 		"country_iso_numeric": "796",
 		"currency_name": "us dollar",
@@ -1824,7 +1816,7 @@
 		"currency_number": "980"
 	},
 	"ae": {
-		"country_name": "united arab emirates (the)",
+		"country_name": "united arab emirates",
 		"country_iso3": "are",
 		"country_iso_numeric": "784",
 		"currency_name": "uae dirham",
@@ -1832,7 +1824,7 @@
 		"currency_number": "784"
 	},
 	"gb": {
-		"country_name": "united kingdom of great britain and northern ireland (the)",
+		"country_name": "united kingdom of great britain and northern ireland",
 		"country_iso3": "gbr",
 		"country_iso_numeric": "826",
 		"currency_name": "pound sterling",
@@ -1840,7 +1832,7 @@
 		"currency_number": "826"
 	},
 	"um": {
-		"country_name": "united states minor outlying islands (the)",
+		"country_name": "united states minor outlying islands",
 		"country_iso3": "umi",
 		"country_iso_numeric": "581",
 		"currency_name": "us dollar",
@@ -1848,7 +1840,7 @@
 		"currency_number": "840"
 	},
 	"us": {
-		"country_name": "united states of america (the)",
+		"country_name": "united states of america",
 		"country_iso3": "usa",
 		"country_iso_numeric": "840",
 		"currency_name": "us dollar",
