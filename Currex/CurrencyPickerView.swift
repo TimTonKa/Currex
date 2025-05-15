@@ -19,6 +19,8 @@ struct CurrencyPickerView: View {
             return countries
         } else {
             return countries.filter {
+                let localizedName = NSLocalizedString($0.countryName, comment: "")
+                return localizedName.localizedCaseInsensitiveContains(searchText) ||
                 $0.countryName.localizedCaseInsensitiveContains(searchText) ||
                 $0.currencyCode.localizedCaseInsensitiveContains(searchText)
             }
@@ -53,7 +55,7 @@ struct CurrencyPickerView: View {
                         dismiss()
                     }) {
                         HStack {
-                            Text(country.countryName.capitalized)
+                            Text(LocalizedStringKey(country.countryName))
                             Spacer()
                             Text(country.currencyCode.uppercased())
                                 .foregroundColor(.gray)
