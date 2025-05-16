@@ -84,6 +84,8 @@ class CalculatorEngine: ObservableObject {
         if let lastChar = expression.last, operators.contains(lastChar) || lastChar == "." {
             expression.removeLast()
         }
+        
+        guard !expression.isEmpty else { return }
 
         let mathExpression = expression
             .replacingOccurrences(of: "×", with: "*")
