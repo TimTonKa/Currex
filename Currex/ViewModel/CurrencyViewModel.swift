@@ -16,6 +16,7 @@ class CurrencyViewModel: ObservableObject {
     @Published var sourceCurrencyCode: String {
         didSet {
             UserDefaultsManager.shared.setSourceCurrencyCode(sourceCurrencyCode)
+            updateSourceCountry()
             convert()
         }
     }
@@ -23,9 +24,13 @@ class CurrencyViewModel: ObservableObject {
     @Published var targetCurrencyCode: String {
         didSet {
             UserDefaultsManager.shared.setTargetCurrencyCode(targetCurrencyCode)
+            updateTargetCountry()
             convert()
         }
     }
+    
+    @Published var sourceCountry: CountryCurrency?
+    @Published var targetCountry: CountryCurrency?
 
     @Published var countries: [CountryCurrency] = []
     @Published var convertedAmount: Double?
@@ -44,6 +49,10 @@ class CurrencyViewModel: ObservableObject {
 
         loadCountries()
         setupBindings()
+        
+        // 初始化對應國家
+        updateSourceCountry()
+        updateTargetCountry()
         
         Task {
             await fetchExchangeRates()
@@ -129,5 +138,21 @@ class CurrencyViewModel: ObservableObject {
         }
 
         countries = decoded.map { $0.value }.sorted { $0.currencyCode < $1.currencyCode }
+        
+        // 補上：一旦載入 countries，就更新對應國家
+        updateSourceCountry()
+        updateTargetCountry()
+    }
+    
+    private func updateSourceCountry() {
+        sourceCountry = countries.first(where: {
+            $0.currencyCode.lowercased() == sourceCurrencyCode.lowercased()
+        })
+    }
+
+    private func updateTargetCountry() {
+        targetCountry = countries.first(where: {
+            $0.currencyCode.lowercased() == targetCurrencyCode.lowercased()
+        })
     }
 }
