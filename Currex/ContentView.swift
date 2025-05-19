@@ -37,13 +37,13 @@ struct ContentView: View {
 
                     // 右邊：金額顯示
                     VStack(alignment: .trailing, spacing: 32) {
-                        Text(viewModel.formattedResult)
+                        Text(viewModel.formattedResultWithCurrency)
                             .font(.system(size: 32, weight: .bold))
                             .lineLimit(1)
                             .minimumScaleFactor(0.5)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                                                 
-                        Text(viewModel.formattedConvertedAmount)
+                        Text(viewModel.formattedConvertedAmountWithCurrency)
                             .font(.system(size: 32, weight: .bold))
                             .lineLimit(1)
                             .minimumScaleFactor(0.5)

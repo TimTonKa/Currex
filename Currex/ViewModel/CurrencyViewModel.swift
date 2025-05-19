@@ -48,17 +48,15 @@ class CurrencyViewModel: ObservableObject {
     // MARK: - Private Properties
     private var cancellables = Set<AnyCancellable>()
     private var exchangeRates: [String: Double] = [:]
-        
-    var formattedResult: String {
-        guard let value = Double(engine.result), engine.result.count <= 9 else {
-            return ""
-        }
-        return value.formattedWithSeparator()
+    
+    var formattedResultWithCurrency: String {
+        guard let value = Double(engine.result), let currencyCode = sourceCountry?.currencyCode else { return "" }
+        return value.formattedWithCurrency(code: currencyCode)
     }
     
-    var formattedConvertedAmount: String {
-        guard let value = convertedAmount else { return "0" }
-        return value.formattedWithSeparator()
+    var formattedConvertedAmountWithCurrency: String {
+        guard let amount = convertedAmount, let currencyCode = targetCountry?.currencyCode else { return "0" }
+        return amount.formattedWithCurrency(code: currencyCode)
     }
 
     // MARK: - Init
@@ -162,9 +160,10 @@ class CurrencyViewModel: ObservableObject {
 }
 
 extension Double {
-    func formattedWithSeparator() -> String {
+    func formattedWithCurrency(code: String) -> String {
         let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
+        formatter.numberStyle = .currency
+        formatter.currencyCode = code.uppercased()
         formatter.maximumFractionDigits = 2
         return formatter.string(from: NSNumber(value: self)) ?? "0"
     }
