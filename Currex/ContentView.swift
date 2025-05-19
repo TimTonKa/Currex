@@ -18,30 +18,30 @@ struct ContentView: View {
             VStack(spacing: 16) {
 
                 // 幣別與金額顯示區塊
-                HStack(alignment: .center, spacing: 16) {
+                VStack(alignment: .leading, spacing: 16) {
 
                     // 左邊：幣別旗幟與代碼
-                    VStack(spacing: 32) {
+                    HStack(alignment: .center, spacing: 32) {
                         CurrencySelectorView(
                             currencyCode: viewModel.sourceCountry?.currencyCode ?? "",
                             flag: viewModel.sourceCountry?.flag ?? "🏳️",
                             action: { showingSourcePicker = true }
                         )
-
-                        CurrencySelectorView(
-                            currencyCode: viewModel.targetCountry?.currencyCode ?? "",
-                            flag: viewModel.targetCountry?.flag ?? "🏳️",
-                            action: { showingTargetPicker = true }
-                        )
-                    }
-
-                    // 右邊：金額顯示
-                    VStack(alignment: .trailing, spacing: 32) {
+                        
                         Text(viewModel.formattedResultWithCurrency)
                             .font(.system(size: 32, weight: .bold))
                             .lineLimit(1)
                             .minimumScaleFactor(0.5)
                             .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
+
+                    // 右邊：金額顯示
+                    HStack(alignment: .center, spacing: 32) {
+                        CurrencySelectorView(
+                            currencyCode: viewModel.targetCountry?.currencyCode ?? "",
+                            flag: viewModel.targetCountry?.flag ?? "🏳️",
+                            action: { showingTargetPicker = true }
+                        )
                                                 
                         Text(viewModel.formattedConvertedAmountWithCurrency)
                             .font(.system(size: 32, weight: .bold))
