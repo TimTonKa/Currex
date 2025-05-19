@@ -65,6 +65,18 @@ class CurrencyViewModel: ObservableObject {
         let amount = convertedAmount ?? 0.0
         return amount.formattedWithCurrency(code: currencyCode)
     }
+    
+    var formattedExchangeRate: String? {
+        guard let sourceRate = exchangeRates[sourceCurrencyCode.lowercased()],
+              let targetRate = exchangeRates[targetCurrencyCode.lowercased()]
+        else {
+            return nil
+        }
+
+        let rate = targetRate / sourceRate
+        let formatted = String(format: "%.4f", rate)
+        return "1 \(sourceCurrencyCode.uppercased()) = \(formatted) \(targetCurrencyCode.uppercased())"
+    }
 
     // MARK: - Init
     init() {

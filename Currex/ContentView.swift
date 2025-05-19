@@ -53,6 +53,14 @@ struct ContentView: View {
                 .padding(.horizontal)
 
                 Spacer()
+                // 🔽 新增匯率文字區
+                if let exchangeText = viewModel.formattedExchangeRate {
+                    Text(exchangeText)
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                        .padding(.top, 4)
+                }
+                Spacer()
 
                 // 計算機按鍵
                 NumberPadView { action in
