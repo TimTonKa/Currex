@@ -92,9 +92,19 @@ class CalculatorEngine: ObservableObject {
             .replacingOccurrences(of: "÷", with: "/")
 
         let exp = NSExpression(format: mathExpression)
-        //在某些情況下把 999999999 自動四捨五入成 1e+09，然後再轉成 1000000000，這是一種數值格式化的預設行為
         if let value = exp.expressionValue(with: nil, context: nil) as? NSNumber {
-            result = String(format: "%g", value.doubleValue)
+            let formatter = NumberFormatter()
+            formatter.usesGroupingSeparator = false
+            formatter.numberStyle = .decimal
+            formatter.maximumFractionDigits = 10 //設定小數點後最多顯示幾位數（會四捨五入）
+            formatter.maximumIntegerDigits = 20  //= 5 ,formatter.string(from: 1234567) // 顯示 "34567"
+
+            if let formatted = formatter.string(from: value) {
+                result = formatted }
+            else {
+                //在某些情況下把 999999999 自動四捨五入成 1e+09，然後再轉成 1000000000，這是一種數值格式化的預設行為
+                result = "\(value.doubleValue)" // fallback
+            }
         } else {
             result = "錯誤"
         }
