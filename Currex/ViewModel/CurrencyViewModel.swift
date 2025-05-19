@@ -48,6 +48,18 @@ class CurrencyViewModel: ObservableObject {
     // MARK: - Private Properties
     private var cancellables = Set<AnyCancellable>()
     private var exchangeRates: [String: Double] = [:]
+        
+    var formattedResult: String {
+        guard let value = Double(engine.result), engine.result.count <= 9 else {
+            return ""
+        }
+        return value.formattedWithSeparator()
+    }
+    
+    var formattedConvertedAmount: String {
+        guard let value = convertedAmount else { return "0" }
+        return value.formattedWithSeparator()
+    }
 
     // MARK: - Init
     init() {
@@ -96,7 +108,9 @@ class CurrencyViewModel: ObservableObject {
         case .swapCurrency:
             swapCurrencies()
         default:
-            engine.input(action)
+            if engine.result.replacingOccurrences(of: ".", with: "").count < 9 {
+                engine.input(action)
+            }
         }
     }
 
@@ -144,5 +158,14 @@ class CurrencyViewModel: ObservableObject {
         }
 
         countries = decoded.map { $0.value }.sorted { $0.currencyCode < $1.currencyCode }
+    }
+}
+
+extension Double {
+    func formattedWithSeparator() -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        return formatter.string(from: NSNumber(value: self)) ?? "0"
     }
 }

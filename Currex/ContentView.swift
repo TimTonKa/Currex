@@ -37,15 +37,13 @@ struct ContentView: View {
 
                     // 右邊：金額顯示
                     VStack(alignment: .trailing, spacing: 32) {
-                        Text(viewModel.engine.result)
+                        Text(viewModel.formattedResult)
                             .font(.system(size: 32, weight: .bold))
                             .lineLimit(1)
                             .minimumScaleFactor(0.5)
                             .frame(maxWidth: .infinity, alignment: .trailing)
-                        
-
-                        let converted = viewModel.convertedAmount ?? 0
-                        Text(String(format: "%.2f", converted))
+                                                
+                        Text(viewModel.formattedConvertedAmount)
                             .font(.system(size: 32, weight: .bold))
                             .lineLimit(1)
                             .minimumScaleFactor(0.5)
