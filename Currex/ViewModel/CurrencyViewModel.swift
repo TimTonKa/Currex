@@ -50,12 +50,19 @@ class CurrencyViewModel: ObservableObject {
     private var exchangeRates: [String: Double] = [:]
     
     var formattedResultWithCurrency: String {
-        guard let value = Double(engine.result), let currencyCode = sourceCountry?.currencyCode else { return "" }
+        guard let currencyCode = sourceCountry?.currencyCode else {
+            return ""
+        }
+        
+        let value = Double(engine.result) ?? 0.0
         return value.formattedWithCurrency(code: currencyCode)
     }
     
     var formattedConvertedAmountWithCurrency: String {
-        guard let amount = convertedAmount, let currencyCode = targetCountry?.currencyCode else { return "0" }
+        guard let currencyCode = targetCountry?.currencyCode else {
+            return "0"
+        }
+        let amount = convertedAmount ?? 0.0
         return amount.formattedWithCurrency(code: currencyCode)
     }
 
