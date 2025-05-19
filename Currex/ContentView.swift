@@ -41,7 +41,6 @@ struct ContentView: View {
                             .font(.system(size: 32, weight: .bold))
                             .lineLimit(1)
                             .minimumScaleFactor(0.5)
-                            .border(.white, width: 1.0)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                         
 
@@ -50,7 +49,6 @@ struct ContentView: View {
                             .font(.system(size: 32, weight: .bold))
                             .lineLimit(1)
                             .minimumScaleFactor(0.5)
-                            .border(.white, width: 1.0)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                 }

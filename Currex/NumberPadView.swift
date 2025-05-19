@@ -58,7 +58,7 @@ struct NumberPadView: View {
         case .equal: return "="
         case .clear: return "AC"
         case .backspace: return "⌫"
-        case .swapCurrency: return "⇄"
+        case .swapCurrency: return "⇅"
         }
     }
 
