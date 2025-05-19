@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CurrencyPickerView: View {
     @Environment(\.dismiss) var dismiss
-    @Binding var selectedCode: String
+    @Binding var selectedCountryCode: String
     @State private var searchText: String = ""
 
     let countries: [CountryCurrency]
@@ -51,7 +51,7 @@ struct CurrencyPickerView: View {
                 // 列表
                 List(filteredCountries) { country in
                     Button(action: {
-                        selectedCode = country.currencyCode
+                        selectedCountryCode = country.countryCode
                         dismiss()
                     }) {
                         HStack {

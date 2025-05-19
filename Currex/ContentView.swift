@@ -23,13 +23,13 @@ struct ContentView: View {
                     // 左邊：幣別旗幟與代碼
                     VStack(spacing: 32) {
                         CurrencySelectorView(
-                            currencyCode: viewModel.sourceCurrencyCode,
+                            currencyCode: viewModel.sourceCountry?.currencyCode ?? "",
                             flag: viewModel.sourceCountry?.flag ?? "🏳️",
                             action: { showingSourcePicker = true }
                         )
 
                         CurrencySelectorView(
-                            currencyCode: viewModel.targetCurrencyCode,
+                            currencyCode: viewModel.targetCountry?.currencyCode ?? "",
                             flag: viewModel.targetCountry?.flag ?? "🏳️",
                             action: { showingTargetPicker = true }
                         )
@@ -66,10 +66,22 @@ struct ContentView: View {
             .padding()
             .background(Color(UIColor.systemBackground))
             .sheet(isPresented: $showingSourcePicker) {
-                CurrencyPickerView(selectedCode: $viewModel.sourceCurrencyCode, countries: viewModel.countries)
+                CurrencyPickerView(selectedCountryCode: Binding(
+                    get: { viewModel.sourceCountry?.countryCode ?? "" },
+                    set: { newCode in
+                        if let match = viewModel.countries.first(where: { $0.countryCode == newCode }) {
+                            viewModel.sourceCountry = match
+                        }
+                    }), countries: viewModel.countries)
             }
             .sheet(isPresented: $showingTargetPicker) {
-                CurrencyPickerView(selectedCode: $viewModel.targetCurrencyCode, countries: viewModel.countries)
+                CurrencyPickerView(selectedCountryCode: Binding(
+                    get: { viewModel.targetCountry?.countryCode ?? "" },
+                    set: { newCode in
+                        if let match = viewModel.countries.first(where: { $0.countryCode == newCode }) {
+                            viewModel.targetCountry = match
+                        }
+                    }), countries: viewModel.countries)
             }
         }
     }

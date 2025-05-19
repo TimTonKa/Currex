@@ -13,24 +13,31 @@ class CurrencyViewModel: ObservableObject {
     private let logger = Logger(subsystem: "", category: String(describing: CurrencyViewModel.self))
     
     // MARK: - Published Properties
-    @Published var sourceCurrencyCode: String {
+    @Published var sourceCountry: CountryCurrency? {
         didSet {
-            UserDefaultsManager.shared.setSourceCurrencyCode(sourceCurrencyCode)
-            updateSourceCountry()
-            convert()
+            if let code = sourceCountry?.countryCode {
+                UserDefaultsManager.shared.setSourceCurrencyCode(code)
+                convert()
+            }
         }
     }
-    
-    @Published var targetCurrencyCode: String {
+
+    @Published var targetCountry: CountryCurrency? {
         didSet {
-            UserDefaultsManager.shared.setTargetCurrencyCode(targetCurrencyCode)
-            updateTargetCountry()
-            convert()
+            if let code = targetCountry?.countryCode {
+                UserDefaultsManager.shared.setTargetCurrencyCode(code)
+                convert()
+            }
         }
     }
-    
-    @Published var sourceCountry: CountryCurrency?
-    @Published var targetCountry: CountryCurrency?
+
+    var sourceCurrencyCode: String {
+        sourceCountry?.currencyCode ?? ""
+    }
+
+    var targetCurrencyCode: String {
+        targetCountry?.currencyCode ?? ""
+    }
 
     @Published var countries: [CountryCurrency] = []
     @Published var convertedAmount: Double?
@@ -44,15 +51,14 @@ class CurrencyViewModel: ObservableObject {
 
     // MARK: - Init
     init() {
-        self.sourceCurrencyCode = UserDefaultsManager.shared.getSourceCurrencyCode() ?? "usd"
-        self.targetCurrencyCode = UserDefaultsManager.shared.getTargetCurrencyCode() ?? "twd"
-
         loadCountries()
         setupBindings()
         
-        // 初始化對應國家
-        updateSourceCountry()
-        updateTargetCountry()
+        let sourceCode = UserDefaultsManager.shared.getSourceCurrencyCode() ?? "us"
+        let targetCode = UserDefaultsManager.shared.getTargetCurrencyCode() ?? "tw"
+
+        self.sourceCountry = countries.first(where: { $0.countryCode.lowercased() == sourceCode.lowercased() })
+        self.targetCountry = countries.first(where: { $0.countryCode.lowercased() == targetCode.lowercased() })
         
         Task {
             await fetchExchangeRates()
@@ -108,9 +114,9 @@ class CurrencyViewModel: ObservableObject {
     }
     
     func swapCurrencies() {
-        let temp = sourceCurrencyCode
-        sourceCurrencyCode = targetCurrencyCode
-        targetCurrencyCode = temp
+        let temp = sourceCountry
+        sourceCountry = targetCountry
+        targetCountry = temp
         convert() // 交換後立即換算
     }
 
@@ -138,21 +144,5 @@ class CurrencyViewModel: ObservableObject {
         }
 
         countries = decoded.map { $0.value }.sorted { $0.currencyCode < $1.currencyCode }
-        
-        // 補上：一旦載入 countries，就更新對應國家
-        updateSourceCountry()
-        updateTargetCountry()
-    }
-    
-    private func updateSourceCountry() {
-        sourceCountry = countries.first(where: {
-            $0.currencyCode.lowercased() == sourceCurrencyCode.lowercased()
-        })
-    }
-
-    private func updateTargetCountry() {
-        targetCountry = countries.first(where: {
-            $0.currencyCode.lowercased() == targetCurrencyCode.lowercased()
-        })
     }
 }
