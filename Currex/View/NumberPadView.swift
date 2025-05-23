@@ -2,7 +2,7 @@
 //  NumberPadView.swift
 //  Currex
 //
-//  Created by Tim Zheng on 2025/4/30.
+//  Created by Tim Tseng on 2025/4/30.
 //
 
 

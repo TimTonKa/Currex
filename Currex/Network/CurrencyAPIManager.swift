@@ -2,7 +2,7 @@
 //  CurrencyAPIManager.swift
 //  CurrenxApp
 //
-//  Created by Tim Zheng on 2025/4/18.
+//  Created by Tim Tseng on 2025/4/18.
 //
 
 import Foundation

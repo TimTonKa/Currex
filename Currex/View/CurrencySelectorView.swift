@@ -2,7 +2,7 @@
 //  CurrencySelectorView.swift
 //  Currex
 //
-//  Created by Tim Zheng on 2025/5/16.
+//  Created by Tim Tseng on 2025/5/16.
 //
 
 import SwiftUICore

@@ -2,7 +2,7 @@
 //  CurrexUITestsLaunchTests.swift
 //  CurrexUITests
 //
-//  Created by 曾凱煌 on 2025/5/1.
+//  Created by Tim Tseng on 2025/5/1.
 //
 
 import XCTest

@@ -2,17 +2,19 @@
 //  ContentView.swift
 //  Currex
 //
-//  Created by 曾凱煌 on 2025/5/1.
+//  Created by Tim Tseng on 2025/5/1.
 //
 
 import SwiftUI
 import OSLog
+import SwiftData
 
 struct ContentView: View {
-    @StateObject private var viewModel = CurrencyViewModel()
+    @ObservedObject var viewModel: CurrencyViewModel
+    
     @State private var showingSourcePicker = false
     @State private var showingTargetPicker = false
-
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 16) {

@@ -2,7 +2,7 @@
 //  UserDefaultsManager.swift
 //  Currex
 //
-//  Created by Tim Zheng on 2025/4/29.
+//  Created by Tim Tseng on 2025/4/29.
 //
 
 import Foundation

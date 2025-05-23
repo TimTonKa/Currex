@@ -2,16 +2,18 @@
 //  CurrexApp.swift
 //  Currex
 //
-//  Created by 曾凱煌 on 2025/5/1.
+//  Created by Tim Tseng on 2025/5/1.
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct CurrexApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppEntry()
         }
+        .modelContainer(for: [ExchangeRateRecord.self, ExchangeRateItem.self])
     }
 }

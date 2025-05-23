@@ -2,7 +2,7 @@
 //  ExchangeRateResponse.swift
 //  CurrenxApp
 //
-//  Created by Tim Zheng on 2025/4/19.
+//  Created by Tim Tseng on 2025/4/19.
 //
 
 import Foundation

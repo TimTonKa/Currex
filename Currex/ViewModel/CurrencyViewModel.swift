@@ -2,15 +2,19 @@
 //  CurrencyViewModel.swift
 //  CurrenxApp
 //
-//  Created by Tim Zheng on 2025/4/18.
+//  Created by Tim Tseng on 2025/4/18.
 //
 
 import Foundation
 import Combine
 import OSLog
+import SwiftUICore
+import SwiftData
 
 class CurrencyViewModel: ObservableObject {
     private let logger = Logger(subsystem: "", category: String(describing: CurrencyViewModel.self))
+    
+    private let modelContext: ModelContext
     
     // MARK: - Published Properties
     @Published var sourceCountry: CountryCurrency? {
@@ -30,6 +34,8 @@ class CurrencyViewModel: ObservableObject {
             }
         }
     }
+    
+    @Published var exchangeRateTimestamp: Date?
 
     var sourceCurrencyCode: String {
         sourceCountry?.currencyCode ?? ""
@@ -48,6 +54,7 @@ class CurrencyViewModel: ObservableObject {
     // MARK: - Private Properties
     private var cancellables = Set<AnyCancellable>()
     private var exchangeRates: [String: Double] = [:]
+    private let baseCurrency = "usd"
     
     var formattedResultWithCurrency: String {
         guard let currencyCode = sourceCountry?.currencyCode else {
@@ -75,11 +82,19 @@ class CurrencyViewModel: ObservableObject {
 
         let rate = targetRate / sourceRate
         let formatted = String(format: "%.4f", rate)
-        return "1 \(sourceCurrencyCode.uppercased()) = \(formatted) \(targetCurrencyCode.uppercased())"
+        var result = "1 \(sourceCurrencyCode.uppercased()) = \(formatted) \(targetCurrencyCode.uppercased())"
+        if let timestamp = exchangeRateTimestamp {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy/MM/dd HH:mm"
+            result += " (\(formatter.string(from: timestamp)))"
+        }
+        return result
     }
 
     // MARK: - Init
-    init() {
+    init(modelContext: ModelContext) {
+        self.modelContext = modelContext
+        
         loadCountries()
         setupBindings()
         
@@ -157,15 +172,36 @@ class CurrencyViewModel: ObservableObject {
         defer { isLoading = false }
 
         do {
-            let rates = try await CurrencyAPIManager.shared.fetchExchangeRates(endpoint: "usd")
+            let rates = try await CurrencyAPIManager.shared.fetchExchangeRates(endpoint: baseCurrency)
             self.exchangeRates = rates
+            self.exchangeRateTimestamp = Date()
+            saveRates(base: baseCurrency, timestamp: Date(), rates: rates)
+            
+            logger.debug("Rates: \(rates)")
             convert() // 自動換算
         } catch {
             logger.error("Fetch exchange rates failed: \(error)")
+            // 讀取最新一筆本地資料
+            loadLatestRates()
         }
     }
 
     // MARK: - Private Helpers
+    private func saveRates(base: String, timestamp: Date = .now, rates: [String: Double]) {
+        let items = rates.map { ExchangeRateItem(currencyCode: $0.key, rate: $0.value) }
+        let record = ExchangeRateRecord(baseCurrency: base, timestamp: timestamp, items: items)
+        modelContext.insert(record)
+    }
+    
+    func loadLatestRates() {
+        let descriptor = FetchDescriptor<ExchangeRateRecord>(sortBy: [SortDescriptor(\.timestamp, order: .reverse)])
+        if let latest = try? modelContext.fetch(descriptor).first {
+            logger.debug("Fetch rates from DB success!")
+            self.exchangeRateTimestamp = latest.timestamp
+            self.exchangeRates = Dictionary(uniqueKeysWithValues: latest.items.map { ($0.currencyCode, $0.rate) })
+        }
+    }
+    
     private func loadCountries() {
         guard let url = Bundle.main.url(forResource: "Country", withExtension: "json"),
               let data = try? Data(contentsOf: url),
