@@ -14,26 +14,26 @@ final class UserDefaultsManager {
     private init() {}
 
     private enum Keys {
-        static let sourceCurrencyCode = "SourceCurrencyCode"
-        static let targetCurrencyCode = "TargetCurrencyCode"
+        static let sourceCountryCode = "SourceCountryCode"
+        static let targetCountryCode = "TargetCountryCode"
     }
 
     
-    // MARK: - Source Currency
-    func getSourceCurrencyCode() -> String? {
-        defaults.string(forKey: Keys.sourceCurrencyCode)
+    // MARK: - Source Country
+    func getSourceCountryCode() -> String? {
+        defaults.string(forKey: Keys.sourceCountryCode)
     }
 
-    func setSourceCurrencyCode(_ code: String) {
-        defaults.set(code, forKey: Keys.sourceCurrencyCode)
+    func setSourceCountryCode(_ code: String) {
+        defaults.set(code, forKey: Keys.sourceCountryCode)
     }
 
-    // MARK: - Target Currency
-    func getTargetCurrencyCode() -> String? {
-        defaults.string(forKey: Keys.targetCurrencyCode)
+    // MARK: - Target Country
+    func getTargetCountryCode() -> String? {
+        defaults.string(forKey: Keys.targetCountryCode)
     }
 
-    func setTargetCurrencyCode(_ code: String) {
-        defaults.set(code, forKey: Keys.targetCurrencyCode)
-    }    
+    func setTargetCountryCode(_ code: String) {
+        defaults.set(code, forKey: Keys.targetCountryCode)
+    }
 }

@@ -20,7 +20,7 @@ class CurrencyViewModel: ObservableObject {
     @Published var sourceCountry: CountryCurrency? {
         didSet {
             if let code = sourceCountry?.countryCode {
-                UserDefaultsManager.shared.setSourceCurrencyCode(code)
+                UserDefaultsManager.shared.setSourceCountryCode(code)
                 convert()
             }
         }
@@ -29,7 +29,7 @@ class CurrencyViewModel: ObservableObject {
     @Published var targetCountry: CountryCurrency? {
         didSet {
             if let code = targetCountry?.countryCode {
-                UserDefaultsManager.shared.setTargetCurrencyCode(code)
+                UserDefaultsManager.shared.setTargetCountryCode(code)
                 convert()
             }
         }
@@ -98,8 +98,8 @@ class CurrencyViewModel: ObservableObject {
         loadCountries()
         setupBindings()
         
-        let sourceCode = UserDefaultsManager.shared.getSourceCurrencyCode() ?? "us"
-        let targetCode = UserDefaultsManager.shared.getTargetCurrencyCode() ?? "tw"
+        let sourceCode = UserDefaultsManager.shared.getSourceCountryCode() ?? "us"
+        let targetCode = UserDefaultsManager.shared.getTargetCountryCode() ?? "tw"
 
         self.sourceCountry = countries.first(where: { $0.countryCode.lowercased() == sourceCode.lowercased() })
         self.targetCountry = countries.first(where: { $0.countryCode.lowercased() == targetCode.lowercased() })
