@@ -188,9 +188,39 @@ class CurrencyViewModel: ObservableObject {
 
     // MARK: - Private Helpers
     private func saveRates(base: String, timestamp: Date = .now, rates: [String: Double]) {
-        let items = rates.map { ExchangeRateItem(currencyCode: $0.key, rate: $0.value) }
-        let record = ExchangeRateRecord(baseCurrency: base, timestamp: timestamp, items: items)
-        modelContext.insert(record)
+        let calendar = Calendar.current
+        let todayStart = calendar.startOfDay(for: timestamp)
+        
+        guard let endOfDay = calendar.date(byAdding: .day, value: 1, to: todayStart) else {
+            logger.error("Failed to compute end of day.")
+            return
+        }
+
+        // 檢查是否已有今天的資料
+        let predicate = #Predicate<ExchangeRateRecord> {
+            $0.timestamp >= todayStart && $0.timestamp < endOfDay
+        }
+
+        let descriptor = FetchDescriptor<ExchangeRateRecord>(predicate: predicate)
+        
+        do {
+            let existingRecords = try modelContext.fetch(descriptor)
+            
+            if let existing = existingRecords.first {
+                // 已有今天的資料 → 覆蓋 items 和 timestamp
+                existing.items = rates.map { ExchangeRateItem(currencyCode: $0.key, rate: $0.value) }
+                existing.timestamp = timestamp
+                logger.debug("Updated existing exchange rate record for today.")
+            } else {
+                // 沒有今天的資料 → 新增一筆
+                let items = rates.map { ExchangeRateItem(currencyCode: $0.key, rate: $0.value) }
+                let record = ExchangeRateRecord(baseCurrency: base, timestamp: timestamp, items: items)
+                modelContext.insert(record)
+                logger.debug("Inserted new exchange rate record for today.")
+            }
+        } catch {
+            logger.error("Failed to fetch or save exchange rate record: \(error)")
+        }
     }
     
     func loadLatestRates() {
