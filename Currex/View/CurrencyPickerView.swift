@@ -55,6 +55,8 @@ struct CurrencyPickerView: View {
                         dismiss()
                     }) {
                         HStack {
+                            Text(country.flag)
+                                .font(.system(size: 24))// ← 加上國旗 emoji
                             Text(LocalizedStringKey(country.countryName))
                             Spacer()
                             Text(country.currencyCode.uppercased())
