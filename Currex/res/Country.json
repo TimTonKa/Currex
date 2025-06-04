@@ -229,8 +229,8 @@
     "country_iso3": "bq",
     "country_iso_numeric": "bes",
     "currency_name": " sint eustatius and saba",
-    "currency_code": "us dollar",
-    "currency_number": "usd",
+    "currency_code": "usd",
+    "currency_number": "840",
     "country_code": "bq"
   },
   "ba": {
@@ -1471,9 +1471,9 @@
     "country_iso3": "ps",
     "country_iso_numeric": "pse",
     "currency_name": " state of",
-    "currency_code": "no universal currency",
-    "currency_number": "",
-    "country_code": " state of"
+    "currency_code": "usd",
+    "currency_number": "840",
+    "country_code": "ps"
   },
   "pa": {
     "country_name": "panama",
@@ -1624,9 +1624,9 @@
     "country_iso3": "sh",
     "country_iso_numeric": "shn",
     "currency_name": " ascension and tristan da cunha",
-    "currency_code": "saint helena pound",
-    "currency_number": "shp",
-    "country_code": " ascension and tristan da cunha"
+    "currency_code": "shp",
+    "currency_number": "654",
+    "country_code": "sh"
   },
   "kn": {
     "country_name": "saint kitts and nevis",
@@ -1921,9 +1921,9 @@
     "country_iso3": "tz",
     "country_iso_numeric": "tza",
     "currency_name": " united republic of",
-    "currency_code": "tanzanian shilling",
-    "currency_number": "tzs",
-    "country_code": " united republic of"
+    "currency_code": "tzs",
+    "currency_number": "834",
+    "country_code": "tz"
   },
   "th": {
     "country_name": "thailand",
