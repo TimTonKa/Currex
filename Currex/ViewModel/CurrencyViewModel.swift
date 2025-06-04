@@ -62,7 +62,7 @@ class CurrencyViewModel: ObservableObject {
         }
         
         let value = Double(engine.result) ?? 0.0
-        return value.formattedWithCurrency(code: currencyCode)
+        return value.formattedWithTwoDecimal(code: currencyCode)
     }
     
     var formattedConvertedAmountWithCurrency: String {
@@ -70,7 +70,7 @@ class CurrencyViewModel: ObservableObject {
             return "0"
         }
         let amount = convertedAmount ?? 0.0
-        return amount.formattedWithCurrency(code: currencyCode)
+        return amount.formattedWithTwoDecimal(code: currencyCode)
     }
     
     var formattedExchangeRate: String? {
@@ -245,10 +245,10 @@ class CurrencyViewModel: ObservableObject {
 }
 
 extension Double {
-    func formattedWithCurrency(code: String) -> String {
+    func formattedWithTwoDecimal(code: String) -> String {
         let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = code.uppercased()
+        formatter.usesGroupingSeparator = false
+        formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2
         return formatter.string(from: NSNumber(value: self)) ?? "0"
     }
