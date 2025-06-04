@@ -3333,6 +3333,38 @@
         }
       }
     },
+    "search_country_or_currency" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search by country or currency"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜尋國家或幣別"
+          }
+        }
+      }
+    },
+    "select_currency" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select currency"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇幣別"
+          }
+        }
+      }
+    },
     "senegal" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4284,12 +4316,6 @@
           }
         }
       }
-    },
-    "搜尋國家或幣別" : {
-
-    },
-    "選擇幣別" : {
-
     }
   },
   "version" : "1.0"

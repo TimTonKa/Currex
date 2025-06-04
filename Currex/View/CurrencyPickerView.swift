@@ -32,7 +32,7 @@ struct CurrencyPickerView: View {
             VStack {
                 // 搜尋框
                 HStack {
-                    TextField("搜尋國家或幣別", text: $searchText)
+                    TextField(L10n.search, text: $searchText)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(.horizontal)
                     
@@ -63,7 +63,7 @@ struct CurrencyPickerView: View {
                     }
                 }
             }
-            .navigationTitle("選擇幣別")
+            .navigationTitle(L10n.selectCurrency)
             .navigationBarTitleDisplayMode(.inline)
         }
     }
